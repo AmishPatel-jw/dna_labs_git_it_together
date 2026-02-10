@@ -31,6 +31,8 @@ graph TD
   D -->|"5"| R["Exit"]
   D -->|Other| S["Show invalid choice"]
   S --> B
+  classDef error fill:#e74c3c,stroke:#c0392b,color:#fff
+  class L,Q,S error
 ```
 
 ## Project Structure
