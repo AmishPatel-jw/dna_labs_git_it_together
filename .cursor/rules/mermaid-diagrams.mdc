@@ -1,0 +1,96 @@
+---
+description: Whenever diagrams or mermaid is mentioned.
+globs:
+alwaysApply: false
+---
+
+# Mermaid Diagrams (GitHub Markdown)
+
+Essential rules for creating Mermaid diagrams that render well in GitHub Markdown.
+
+## 1. Correct Fenced Code Block
+
+- Start the block with ` ```mermaid ` and end with ` ``` `.
+- Example:
+
+```markdown
+```mermaid
+graph TD
+  A[Start] --> B{Decision};
+  B -- Yes --> C[Action 1];
+  B -- No --> D[Action 2];
+```
+```
+
+## 2. Well-Supported Diagram Types
+
+Use types GitHub supports well:
+
+- `graph` (Flowcharts – `TD` is often best for readability)
+- `sequenceDiagram`
+- `classDiagram`
+- `stateDiagram-v2` (prefer v2 for better features/rendering)
+- `erDiagram` (Entity Relationship)
+- `pie` (Pie charts)
+- `gantt` (Gantt charts)
+- `mindmap` (basic structure only; see syntax notes below)
+
+Avoid very new or uncommon diagram types; GitHub’s Mermaid version may lag.
+
+## 3. Simple, Standard Syntax
+
+- **Node IDs:** Use simple alphanumeric IDs (e.g. `node1`, `processA`, `userAuth`). No spaces or special characters in IDs.
+- **Labels:** **Use quotes (`"..."`)** for labels that contain spaces, punctuation, special characters, or Mermaid keywords. This avoids most rendering errors.
+  - Good: `A["User Input"] --> B["Validate Data"];`
+  - Bad: `A[User Input] --> B[Validate Data];`
+- **Arrows:** Use standard types (`-->`, `---`, `==>`, `->>`, etc.).
+- **Comments:** Use `%%` for comments.
+
+## 4. Mindmap on GitHub
+
+- Use **indentation** for hierarchy (parent/child). One node per line with correct indentation.
+- **Do not use** experimental/advanced mindmap features like `::icon()`. Icons cause rendering errors on GitHub.
+- Use plain text nodes only.
+
+Correct (GitHub compatible):
+
+```mermaid
+mindmap
+  Root
+    Parent
+      Child 1
+      Child 2
+```
+
+Incorrect (icons not supported on GitHub):
+
+```mermaid
+mindmap
+  Root
+    Parent
+      ::icon(fa fa-one) Child 1
+      ::icon(fa fa-two) Child 2
+```
+
+## 5. Prefer Vertical Layouts
+
+- For flowcharts (`graph`), use `TD` (Top Down) or `TB` (Top Bottom) for readability in Markdown. Prefer over `LR` (Left Right).
+
+## 6. No Custom Theme or Styling
+
+- **Do not** set themes (e.g. `%%{init: {'theme': 'dark'}}%%`) or use `classDef`/`style` in the Mermaid code.
+- GitHub ignores these and uses its own light/dark/dimmed styling. Forcing colors or themes is ignored or looks wrong.
+
+## 7. Keep Diagrams Focused
+
+- Avoid one diagram with too many nodes, edges, or nesting. Split complex ideas into multiple simpler diagrams.
+
+## 8. Verify in GitHub
+
+- Use GitHub’s preview when editing the Markdown file to confirm the diagram renders and to catch syntax/layout issues.
+
+## 9. Review Automated Edits
+
+- Automated tools often break Mermaid blocks (indentation, formatting). Always review edits to Mermaid blocks and fix manually if the diagram fails to render.
+
+**Summary:** Use standard Mermaid syntax with quoted labels and common diagram types. For mindmaps on GitHub, use only the basic indentation structure (no icons). Prefer `graph TD`. Do not set theme/colors. Verify in GitHub preview and double-check any automated edits to Mermaid blocks.

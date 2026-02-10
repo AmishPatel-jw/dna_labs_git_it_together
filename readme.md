@@ -2,6 +2,37 @@
 
 A simple Todo application designed to help you practice common git commands.
 
+## User Workflow
+
+```mermaid
+graph TD
+  A["Start app"] --> B["Show menu"]
+  B --> C["User enters choice 1-5"]
+  C --> D{Choice?}
+  D -->|"1"| E["Enter title and optional description"]
+  E --> F["Add todo"]
+  F --> B
+  D -->|"2"| G["List all todos"]
+  G --> B
+  D -->|"3"| H["List todos"]
+  H --> I["Enter todo number to complete"]
+  I --> J{Valid?}
+  J -->|Yes| K["Mark todo complete"]
+  J -->|No| L["Show invalid message"]
+  K --> B
+  L --> B
+  D -->|"4"| M["List todos"]
+  M --> N["Enter todo number to delete"]
+  N --> O{Valid?}
+  O -->|Yes| P["Delete todo"]
+  O -->|No| Q["Show invalid message"]
+  P --> B
+  Q --> B
+  D -->|"5"| R["Exit"]
+  D -->|Other| S["Show invalid choice"]
+  S --> B
+```
+
 ## Project Structure
 
 ```
